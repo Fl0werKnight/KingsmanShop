@@ -1,0 +1,146 @@
+﻿<Window x:Class="KingsmanShop.Windows.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KingsmanShop.Windows"
+        mc:Ignorable="d"
+        Title="Меню" 
+        Width="900"
+        Height="650"
+        WindowStartupLocation="CenterScreen">
+    <Grid Background="#121212">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="65"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border Background="#1CFFFFFF" Grid.RowSpan="10"/>
+
+        <!-- Надпись: Меню -->
+        <TextBlock Text="Меню"
+                   FontSize="54"
+                   Foreground="White"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Top"
+                   Grid.Row="0"/>
+        <Border BorderThickness="0 1 0 0"
+                BorderBrush="White"
+                Width="900"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                Grid.Row="0"/>
+
+        <!-- Раздел: Менеджер -->
+        <StackPanel Grid.Row="1">
+            <TextBlock Text="Менеджер"
+                       FontSize="36"
+                       Foreground="White"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top"
+                       Margin="0 5 0 0"/>
+            <Border BorderThickness="0 1 0 0"
+                    BorderBrush="White"
+                    Width="200"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"/>
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Margin="0 10">
+                <Border>
+                    <Button x:Name="btnService"
+                            Content="Услуги"
+                            FontSize="24"
+                            Width="150"
+                            Margin="0 0 0 0"
+                            Foreground="WhiteSmoke"
+                            Background="{x:Null}"
+                            BorderBrush="White" 
+                            Click="btnService_Click">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="8"/>
+                                <Setter Property="Margin" Value="0 0 20 0"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                </Border>
+                <Border>
+                    <Button x:Name="btnEmployee" 
+                            Content="Работники"
+                            FontSize="24"
+                            Width="180"
+                            Margin="0 0 0 0"
+                            Foreground="WhiteSmoke"
+                            Background="{x:Null}"
+                            BorderBrush="White" Click="btnEmployee_Click">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="8"/>
+                                <Setter Property="Margin" Value="0 0 20 0"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                </Border>
+                <Border>
+                    <Button x:Name="btnClient" 
+                            Content="Клиенты"
+                            FontSize="24"
+                            Width="150"
+                            Margin="0 0 0 0"
+                            Foreground="WhiteSmoke"
+                            Background="{x:Null}"
+                            BorderBrush="White" 
+                            Click="btnClient_Click">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="8"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                </Border>
+            </StackPanel>
+        </StackPanel>
+
+        <!-- Раздел: Работник -->
+        <StackPanel Grid.Row="2">
+            <TextBlock Text="Работник"
+                       FontSize="36"
+                       Foreground="White"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top"
+                       Margin="0 5 0 0"/>
+            <Border BorderThickness="0 1 0 0"
+                    BorderBrush="White"
+                    Width="180"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"/>
+            <StackPanel Orientation="Horizontal">
+
+            </StackPanel>
+        </StackPanel>
+
+        <!-- Раздел: Клиент -->
+        <StackPanel Grid.Row="3">
+            <TextBlock Text="Клиент"
+                       FontSize="36"
+                       Foreground="White"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top"
+                       Margin="0 5 0 0"/>
+            <Border BorderThickness="0 1 0 0"
+                    BorderBrush="White"
+                    Width="150"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"/>
+            <StackPanel Orientation="Horizontal">
+
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

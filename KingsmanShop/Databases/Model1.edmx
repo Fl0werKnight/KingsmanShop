@@ -1,0 +1,994 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="KingsmanModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CategoryService">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdGender" Type="nchar" MaxLength="1" />
+          <Property Name="IdSize" Type="int" />
+          <Property Name="IdDiscount" Type="int" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="14" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="40" />
+          <Property Name="Password" Type="nvarchar" MaxLength="36" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DeliverMaterialSupplier">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdMaterial" Type="int" />
+          <Property Name="IdSupplier" Type="int" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="DeliverDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Discount">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PercentDiscount" Type="decimal" Precision="3" Scale="2" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdGender" Type="nchar" MaxLength="1" />
+          <Property Name="IdPost" Type="int" />
+          <Property Name="Salary" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="14" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="40" />
+          <Property Name="Password" Type="nvarchar" MaxLength="36" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="nchar" MaxLength="1" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MaterialOnWarehouse">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="MaterialService">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdMaterial" Type="int" />
+          <Property Name="IdService" Type="int" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdEmployee" Type="int" />
+          <Property Name="IdClient" Type="int" />
+          <Property Name="DateOrder" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PostDiscount" Type="decimal" Precision="3" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Cost" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="IdCategory" Type="int" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="2048" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="ServiceOrder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdService" Type="int" />
+          <Property Name="IdOrder" Type="int" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Size">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Height" Type="decimal" Precision="4" Scale="1" Nullable="false" />
+          <Property Name="Weight" Type="decimal" Precision="4" Scale="1" Nullable="false" />
+          <Property Name="Chest" Type="decimal" Precision="4" Scale="1" Nullable="false" />
+          <Property Name="Waist" Type="decimal" Precision="4" Scale="1" Nullable="false" />
+          <Property Name="Hips" Type="decimal" Precision="4" Scale="1" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="14" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK__Client__IdDiscou__4316F928">
+          <End Role="Discount" Type="Self.Discount" Multiplicity="0..1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Discount">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="IdDiscount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Client__IdGender__412EB0B6">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="IdGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Client__IdSize__4222D4EF">
+          <End Role="Size" Type="Self.Size" Multiplicity="0..1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Size">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="IdSize" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DeliverMa__IdMat__693CA210">
+          <End Role="MaterialOnWarehouse" Type="Self.MaterialOnWarehouse" Multiplicity="0..1" />
+          <End Role="DeliverMaterialSupplier" Type="Self.DeliverMaterialSupplier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MaterialOnWarehouse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DeliverMaterialSupplier">
+              <PropertyRef Name="IdMaterial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DeliverMa__IdSup__6A30C649">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="0..1" />
+          <End Role="DeliverMaterialSupplier" Type="Self.DeliverMaterialSupplier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DeliverMaterialSupplier">
+              <PropertyRef Name="IdSupplier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employee__IdGend__4D94879B">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="IdGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employee__IdPost__4E88ABD4">
+          <End Role="Post" Type="Self.Post" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="IdPost" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MaterialS__IdMat__6E01572D">
+          <End Role="MaterialOnWarehouse" Type="Self.MaterialOnWarehouse" Multiplicity="0..1" />
+          <End Role="MaterialService" Type="Self.MaterialService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MaterialOnWarehouse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MaterialService">
+              <PropertyRef Name="IdMaterial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MaterialS__IdSer__6EF57B66">
+          <End Role="Service" Type="Self.Service" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="MaterialService" Type="Self.MaterialService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MaterialService">
+              <PropertyRef Name="IdService" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order__IdClient__59FA5E80">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="IdClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order__IdEmploye__59063A47">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="IdEmployee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Service__IdCateg__5629CD9C">
+          <End Role="CategoryService" Type="Self.CategoryService" Multiplicity="0..1" />
+          <End Role="Service" Type="Self.Service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoryService">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Service">
+              <PropertyRef Name="IdCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ServiceOr__IdOrd__5EBF139D">
+          <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+          <End Role="ServiceOrder" Type="Self.ServiceOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServiceOrder">
+              <PropertyRef Name="IdOrder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ServiceOr__IdSer__5DCAEF64">
+          <End Role="Service" Type="Self.Service" Multiplicity="0..1" />
+          <End Role="ServiceOrder" Type="Self.ServiceOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServiceOrder">
+              <PropertyRef Name="IdService" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KingsmanModelStoreContainer">
+          <EntitySet Name="CategoryService" EntityType="Self.CategoryService" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DeliverMaterialSupplier" EntityType="Self.DeliverMaterialSupplier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Discount" EntityType="Self.Discount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MaterialOnWarehouse" EntityType="Self.MaterialOnWarehouse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MaterialService" EntityType="Self.MaterialService" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Post" EntityType="Self.Post" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServiceOrder" EntityType="Self.ServiceOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Size" EntityType="Self.Size" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Supplier" EntityType="Self.Supplier" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Client__IdDiscou__4316F928" Association="Self.FK__Client__IdDiscou__4316F928">
+            <End Role="Discount" EntitySet="Discount" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Client__IdGender__412EB0B6" Association="Self.FK__Client__IdGender__412EB0B6">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Client__IdSize__4222D4EF" Association="Self.FK__Client__IdSize__4222D4EF">
+            <End Role="Size" EntitySet="Size" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DeliverMa__IdMat__693CA210" Association="Self.FK__DeliverMa__IdMat__693CA210">
+            <End Role="MaterialOnWarehouse" EntitySet="MaterialOnWarehouse" />
+            <End Role="DeliverMaterialSupplier" EntitySet="DeliverMaterialSupplier" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DeliverMa__IdSup__6A30C649" Association="Self.FK__DeliverMa__IdSup__6A30C649">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="DeliverMaterialSupplier" EntitySet="DeliverMaterialSupplier" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employee__IdGend__4D94879B" Association="Self.FK__Employee__IdGend__4D94879B">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employee__IdPost__4E88ABD4" Association="Self.FK__Employee__IdPost__4E88ABD4">
+            <End Role="Post" EntitySet="Post" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MaterialS__IdMat__6E01572D" Association="Self.FK__MaterialS__IdMat__6E01572D">
+            <End Role="MaterialOnWarehouse" EntitySet="MaterialOnWarehouse" />
+            <End Role="MaterialService" EntitySet="MaterialService" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MaterialS__IdSer__6EF57B66" Association="Self.FK__MaterialS__IdSer__6EF57B66">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="MaterialService" EntitySet="MaterialService" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order__IdClient__59FA5E80" Association="Self.FK__Order__IdClient__59FA5E80">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order__IdEmploye__59063A47" Association="Self.FK__Order__IdEmploye__59063A47">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Service__IdCateg__5629CD9C" Association="Self.FK__Service__IdCateg__5629CD9C">
+            <End Role="CategoryService" EntitySet="CategoryService" />
+            <End Role="Service" EntitySet="Service" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ServiceOr__IdOrd__5EBF139D" Association="Self.FK__ServiceOr__IdOrd__5EBF139D">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="ServiceOrder" EntitySet="ServiceOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ServiceOr__IdSer__5DCAEF64" Association="Self.FK__ServiceOr__IdSer__5DCAEF64">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="ServiceOrder" EntitySet="ServiceOrder" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KingsmanModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CategoryService">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Service" Relationship="Self.FK__Service__IdCateg__5629CD9C" FromRole="CategoryService" ToRole="Service" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdGender" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="IdSize" Type="Int32" />
+          <Property Name="IdDiscount" Type="Int32" />
+          <Property Name="Phone" Type="String" MaxLength="14" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="36" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Discount" Relationship="Self.FK__Client__IdDiscou__4316F928" FromRole="Client" ToRole="Discount" />
+          <NavigationProperty Name="Gender" Relationship="Self.FK__Client__IdGender__412EB0B6" FromRole="Client" ToRole="Gender" />
+          <NavigationProperty Name="Size" Relationship="Self.FK__Client__IdSize__4222D4EF" FromRole="Client" ToRole="Size" />
+          <NavigationProperty Name="Order" Relationship="Self.FK__Order__IdClient__59FA5E80" FromRole="Client" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="DeliverMaterialSupplier">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdMaterial" Type="Int32" />
+          <Property Name="IdSupplier" Type="Int32" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="DeliverDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="MaterialOnWarehouse" Relationship="Self.FK__DeliverMa__IdMat__693CA210" FromRole="DeliverMaterialSupplier" ToRole="MaterialOnWarehouse" />
+          <NavigationProperty Name="Supplier" Relationship="Self.FK__DeliverMa__IdSup__6A30C649" FromRole="DeliverMaterialSupplier" ToRole="Supplier" />
+        </EntityType>
+        <EntityType Name="Discount">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PercentDiscount" Type="Decimal" Precision="3" Scale="2" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Client" Relationship="Self.FK__Client__IdDiscou__4316F928" FromRole="Discount" ToRole="Client" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdGender" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="IdPost" Type="Int32" />
+          <Property Name="Salary" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="14" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="36" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Gender" Relationship="Self.FK__Employee__IdGend__4D94879B" FromRole="Employee" ToRole="Gender" />
+          <NavigationProperty Name="Post" Relationship="Self.FK__Employee__IdPost__4E88ABD4" FromRole="Employee" ToRole="Post" />
+          <NavigationProperty Name="Order" Relationship="Self.FK__Order__IdEmploye__59063A47" FromRole="Employee" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="Self.FK__Client__IdGender__412EB0B6" FromRole="Gender" ToRole="Client" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__Employee__IdGend__4D94879B" FromRole="Gender" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="MaterialOnWarehouse">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DeliverMaterialSupplier" Relationship="Self.FK__DeliverMa__IdMat__693CA210" FromRole="MaterialOnWarehouse" ToRole="DeliverMaterialSupplier" />
+          <NavigationProperty Name="MaterialService" Relationship="Self.FK__MaterialS__IdMat__6E01572D" FromRole="MaterialOnWarehouse" ToRole="MaterialService" />
+        </EntityType>
+        <EntityType Name="MaterialService">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdMaterial" Type="Int32" />
+          <Property Name="IdService" Type="Int32" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MaterialOnWarehouse" Relationship="Self.FK__MaterialS__IdMat__6E01572D" FromRole="MaterialService" ToRole="MaterialOnWarehouse" />
+          <NavigationProperty Name="Service" Relationship="Self.FK__MaterialS__IdSer__6EF57B66" FromRole="MaterialService" ToRole="Service" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdEmployee" Type="Int32" />
+          <Property Name="IdClient" Type="Int32" />
+          <Property Name="DateOrder" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Client" Relationship="Self.FK__Order__IdClient__59FA5E80" FromRole="Order" ToRole="Client" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__Order__IdEmploye__59063A47" FromRole="Order" ToRole="Employee" />
+          <NavigationProperty Name="ServiceOrder" Relationship="Self.FK__ServiceOr__IdOrd__5EBF139D" FromRole="Order" ToRole="ServiceOrder" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PostDiscount" Type="Decimal" Precision="3" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__Employee__IdPost__4E88ABD4" FromRole="Post" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cost" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="IdCategory" Type="Int32" />
+          <Property Name="ImagePath" Type="String" MaxLength="2048" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CategoryService" Relationship="Self.FK__Service__IdCateg__5629CD9C" FromRole="Service" ToRole="CategoryService" />
+          <NavigationProperty Name="MaterialService" Relationship="Self.FK__MaterialS__IdSer__6EF57B66" FromRole="Service" ToRole="MaterialService" />
+          <NavigationProperty Name="ServiceOrder" Relationship="Self.FK__ServiceOr__IdSer__5DCAEF64" FromRole="Service" ToRole="ServiceOrder" />
+        </EntityType>
+        <EntityType Name="ServiceOrder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdService" Type="Int32" />
+          <Property Name="IdOrder" Type="Int32" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Self.FK__ServiceOr__IdOrd__5EBF139D" FromRole="ServiceOrder" ToRole="Order" />
+          <NavigationProperty Name="Service" Relationship="Self.FK__ServiceOr__IdSer__5DCAEF64" FromRole="ServiceOrder" ToRole="Service" />
+        </EntityType>
+        <EntityType Name="Size">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Height" Type="Decimal" Precision="4" Scale="1" Nullable="false" />
+          <Property Name="Weight" Type="Decimal" Precision="4" Scale="1" Nullable="false" />
+          <Property Name="Chest" Type="Decimal" Precision="4" Scale="1" Nullable="false" />
+          <Property Name="Waist" Type="Decimal" Precision="4" Scale="1" Nullable="false" />
+          <Property Name="Hips" Type="Decimal" Precision="4" Scale="1" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Client" Relationship="Self.FK__Client__IdSize__4222D4EF" FromRole="Size" ToRole="Client" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="14" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DeliverMaterialSupplier" Relationship="Self.FK__DeliverMa__IdSup__6A30C649" FromRole="Supplier" ToRole="DeliverMaterialSupplier" />
+        </EntityType>
+        <Association Name="FK__Service__IdCateg__5629CD9C">
+          <End Role="CategoryService" Type="Self.CategoryService" Multiplicity="0..1" />
+          <End Role="Service" Type="Self.Service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoryService">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Service">
+              <PropertyRef Name="IdCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Client__IdDiscou__4316F928">
+          <End Role="Discount" Type="Self.Discount" Multiplicity="0..1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Discount">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="IdDiscount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Client__IdGender__412EB0B6">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="IdGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Client__IdSize__4222D4EF">
+          <End Role="Size" Type="Self.Size" Multiplicity="0..1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Size">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="IdSize" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order__IdClient__59FA5E80">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="IdClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DeliverMa__IdMat__693CA210">
+          <End Role="MaterialOnWarehouse" Type="Self.MaterialOnWarehouse" Multiplicity="0..1" />
+          <End Role="DeliverMaterialSupplier" Type="Self.DeliverMaterialSupplier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MaterialOnWarehouse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DeliverMaterialSupplier">
+              <PropertyRef Name="IdMaterial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DeliverMa__IdSup__6A30C649">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="0..1" />
+          <End Role="DeliverMaterialSupplier" Type="Self.DeliverMaterialSupplier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DeliverMaterialSupplier">
+              <PropertyRef Name="IdSupplier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employee__IdGend__4D94879B">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="IdGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employee__IdPost__4E88ABD4">
+          <End Role="Post" Type="Self.Post" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="IdPost" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order__IdEmploye__59063A47">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="IdEmployee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MaterialS__IdMat__6E01572D">
+          <End Role="MaterialOnWarehouse" Type="Self.MaterialOnWarehouse" Multiplicity="0..1" />
+          <End Role="MaterialService" Type="Self.MaterialService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MaterialOnWarehouse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MaterialService">
+              <PropertyRef Name="IdMaterial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MaterialS__IdSer__6EF57B66">
+          <End Role="Service" Type="Self.Service" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="MaterialService" Type="Self.MaterialService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MaterialService">
+              <PropertyRef Name="IdService" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ServiceOr__IdOrd__5EBF139D">
+          <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+          <End Role="ServiceOrder" Type="Self.ServiceOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServiceOrder">
+              <PropertyRef Name="IdOrder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ServiceOr__IdSer__5DCAEF64">
+          <End Role="Service" Type="Self.Service" Multiplicity="0..1" />
+          <End Role="ServiceOrder" Type="Self.ServiceOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServiceOrder">
+              <PropertyRef Name="IdService" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CategoryService" EntityType="Self.CategoryService" />
+          <EntitySet Name="Client" EntityType="Self.Client" />
+          <EntitySet Name="DeliverMaterialSupplier" EntityType="Self.DeliverMaterialSupplier" />
+          <EntitySet Name="Discount" EntityType="Self.Discount" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" />
+          <EntitySet Name="MaterialOnWarehouse" EntityType="Self.MaterialOnWarehouse" />
+          <EntitySet Name="MaterialService" EntityType="Self.MaterialService" />
+          <EntitySet Name="Order" EntityType="Self.Order" />
+          <EntitySet Name="Post" EntityType="Self.Post" />
+          <EntitySet Name="Service" EntityType="Self.Service" />
+          <EntitySet Name="ServiceOrder" EntityType="Self.ServiceOrder" />
+          <EntitySet Name="Size" EntityType="Self.Size" />
+          <EntitySet Name="Supplier" EntityType="Self.Supplier" />
+          <AssociationSet Name="FK__Service__IdCateg__5629CD9C" Association="Self.FK__Service__IdCateg__5629CD9C">
+            <End Role="CategoryService" EntitySet="CategoryService" />
+            <End Role="Service" EntitySet="Service" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Client__IdDiscou__4316F928" Association="Self.FK__Client__IdDiscou__4316F928">
+            <End Role="Discount" EntitySet="Discount" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Client__IdGender__412EB0B6" Association="Self.FK__Client__IdGender__412EB0B6">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Client__IdSize__4222D4EF" Association="Self.FK__Client__IdSize__4222D4EF">
+            <End Role="Size" EntitySet="Size" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order__IdClient__59FA5E80" Association="Self.FK__Order__IdClient__59FA5E80">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DeliverMa__IdMat__693CA210" Association="Self.FK__DeliverMa__IdMat__693CA210">
+            <End Role="MaterialOnWarehouse" EntitySet="MaterialOnWarehouse" />
+            <End Role="DeliverMaterialSupplier" EntitySet="DeliverMaterialSupplier" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DeliverMa__IdSup__6A30C649" Association="Self.FK__DeliverMa__IdSup__6A30C649">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="DeliverMaterialSupplier" EntitySet="DeliverMaterialSupplier" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employee__IdGend__4D94879B" Association="Self.FK__Employee__IdGend__4D94879B">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employee__IdPost__4E88ABD4" Association="Self.FK__Employee__IdPost__4E88ABD4">
+            <End Role="Post" EntitySet="Post" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order__IdEmploye__59063A47" Association="Self.FK__Order__IdEmploye__59063A47">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MaterialS__IdMat__6E01572D" Association="Self.FK__MaterialS__IdMat__6E01572D">
+            <End Role="MaterialOnWarehouse" EntitySet="MaterialOnWarehouse" />
+            <End Role="MaterialService" EntitySet="MaterialService" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MaterialS__IdSer__6EF57B66" Association="Self.FK__MaterialS__IdSer__6EF57B66">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="MaterialService" EntitySet="MaterialService" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ServiceOr__IdOrd__5EBF139D" Association="Self.FK__ServiceOr__IdOrd__5EBF139D">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="ServiceOrder" EntitySet="ServiceOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ServiceOr__IdSer__5DCAEF64" Association="Self.FK__ServiceOr__IdSer__5DCAEF64">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="ServiceOrder" EntitySet="ServiceOrder" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="KingsmanModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="CategoryService">
+            <EntityTypeMapping TypeName="KingsmanModel.CategoryService">
+              <MappingFragment StoreEntitySet="CategoryService">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="KingsmanModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="IdGender" ColumnName="IdGender" />
+                <ScalarProperty Name="IdSize" ColumnName="IdSize" />
+                <ScalarProperty Name="IdDiscount" ColumnName="IdDiscount" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DeliverMaterialSupplier">
+            <EntityTypeMapping TypeName="KingsmanModel.DeliverMaterialSupplier">
+              <MappingFragment StoreEntitySet="DeliverMaterialSupplier">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
+                <ScalarProperty Name="IdSupplier" ColumnName="IdSupplier" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="DeliverDate" ColumnName="DeliverDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Discount">
+            <EntityTypeMapping TypeName="KingsmanModel.Discount">
+              <MappingFragment StoreEntitySet="Discount">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="PercentDiscount" ColumnName="PercentDiscount" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employee">
+            <EntityTypeMapping TypeName="KingsmanModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="IdGender" ColumnName="IdGender" />
+                <ScalarProperty Name="IdPost" ColumnName="IdPost" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gender">
+            <EntityTypeMapping TypeName="KingsmanModel.Gender">
+              <MappingFragment StoreEntitySet="Gender">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MaterialOnWarehouse">
+            <EntityTypeMapping TypeName="KingsmanModel.MaterialOnWarehouse">
+              <MappingFragment StoreEntitySet="MaterialOnWarehouse">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MaterialService">
+            <EntityTypeMapping TypeName="KingsmanModel.MaterialService">
+              <MappingFragment StoreEntitySet="MaterialService">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
+                <ScalarProperty Name="IdService" ColumnName="IdService" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order">
+            <EntityTypeMapping TypeName="KingsmanModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdEmployee" ColumnName="IdEmployee" />
+                <ScalarProperty Name="IdClient" ColumnName="IdClient" />
+                <ScalarProperty Name="DateOrder" ColumnName="DateOrder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Post">
+            <EntityTypeMapping TypeName="KingsmanModel.Post">
+              <MappingFragment StoreEntitySet="Post">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="PostDiscount" ColumnName="PostDiscount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Service">
+            <EntityTypeMapping TypeName="KingsmanModel.Service">
+              <MappingFragment StoreEntitySet="Service">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="IdCategory" ColumnName="IdCategory" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceOrder">
+            <EntityTypeMapping TypeName="KingsmanModel.ServiceOrder">
+              <MappingFragment StoreEntitySet="ServiceOrder">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdService" ColumnName="IdService" />
+                <ScalarProperty Name="IdOrder" ColumnName="IdOrder" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Size">
+            <EntityTypeMapping TypeName="KingsmanModel.Size">
+              <MappingFragment StoreEntitySet="Size">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Chest" ColumnName="Chest" />
+                <ScalarProperty Name="Waist" ColumnName="Waist" />
+                <ScalarProperty Name="Hips" ColumnName="Hips" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Supplier">
+            <EntityTypeMapping TypeName="KingsmanModel.Supplier">
+              <MappingFragment StoreEntitySet="Supplier">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

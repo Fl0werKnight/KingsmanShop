@@ -1,0 +1,131 @@
+﻿<Window x:Class="KingsmanShop.Windows.Client.ServiceCartWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KingsmanShop.Windows.Client"
+        mc:Ignorable="d"
+        Title="Корзина" 
+        Width="800"
+        Height="510"
+        WindowStartupLocation="CenterScreen">
+    <Grid Background="#121212">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <Border Background="#1CFFFFFF" Grid.RowSpan="10"/>
+        <Border Width="760"
+                Height="370"
+                CornerRadius="50"
+                Background="#FF51F1BC"
+                Grid.Row="1"/>
+        <Border Width="750"
+                Height="370"
+                CornerRadius="50"
+                Background="#8E121212"
+                Grid.Row="1"/>
+        <TextBlock Text="Корзина"
+                   FontSize="32"
+                   FontWeight="Bold"
+                   Foreground="White"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Top"/>
+        <ListView x:Name="lvCartService" 
+                  Grid.Row="1"
+                  Width="680"
+                  Height="340"
+                  Background="{x:Null}"
+                  BorderThickness="0"
+                  d:ItemsSource="{d:SampleData ItemCount=5}"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                  ScrollViewer.VerticalScrollBarVisibility="Hidden">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="0 5 5 0"
+                                Width="150">
+                        <Image Width="150"
+                               Height="180">
+                            <Image.Source>
+                                <Binding Path ="ImagePath"/>
+                            </Image.Source>
+                        </Image>
+                        <TextBlock Text="{Binding Title}"
+                                   FontSize="18"
+                                   FontWeight="Bold"
+                                   Foreground="White"/>
+                        <TextBlock Text="{Binding Cost}"
+                                   FontSize="18"
+                                   FontStyle="Italic"
+                                   Foreground="White"/>
+                        <TextBlock Text="{Binding Description}"
+                                   FontSize="16"
+                                   Foreground="White"
+                                   TextWrapping="Wrap"/>
+                        <WrapPanel Width="150">
+                            <Button x:Name="btnSubstract" 
+                                    Content="&lt;"
+                                    Width="32"
+                                    Height="32" 
+                                    Click="btnSubstract_Click"/>
+                            <TextBlock x:Name="tbCount" 
+                                       Text="{Binding Count}"
+                                       Foreground="White"
+                                       FontSize="24"
+                                       Width="54"
+                                       VerticalAlignment="Center"
+                                       TextAlignment="Center"/>
+                            <Button x:Name="btnAdd" 
+                                    Content=">"
+                                    Width="32"
+                                    Height="32" 
+                                    Click="btnAdd_Click"/>
+                            <Button x:Name="btnRomoveFromCart"
+                                    Width="32"
+                                    Height="32"
+                                    Margin="0 0 0 0"
+                                    Background="{x:Null}"
+                                    BorderThickness="0"
+                                    Click="btnRomoveFromCart_Click">
+                                <Image Source="/Resources/RemoveService.png"/>
+                            </Button>
+                        </WrapPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button x:Name="btnBack"
+                Content="Назад"
+                FontSize="18"
+                Foreground="White"
+                Grid.Row="2"
+                Width="200"
+                Height="40"
+                Margin="10 5"
+                Background="{x:Null}"
+                BorderThickness="0"
+                HorizontalAlignment="Left"
+                Click="btnBack_Click">
+        </Button>
+        <Button x:Name="btnPay"
+                Content="Оформить заказ"
+                FontSize="18"
+                Foreground="White"
+                Grid.Row="2"
+                Width="200"
+                Height="40"
+                Margin="10 5"
+                Background="{x:Null}"
+                BorderThickness="0"
+                HorizontalAlignment="Right"
+                Click="btnPay_Click">
+        </Button>
+    </Grid>
+</Window>
