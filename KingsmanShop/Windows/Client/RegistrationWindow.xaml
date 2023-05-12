@@ -6,24 +6,24 @@
         xmlns:local="clr-namespace:KingsmanShop.Windows"
         mc:Ignorable="d"
         Title="Регистрация" 
-        Width="700"
-        Height="950"
+        Width="650"
+        Height="900"
         WindowStartupLocation="CenterScreen">
     <Grid Background="#121212">
         <Border Background="#1CFFFFFF"/>
-        <Border Width="550"
-                Height="850"
+        <Border Width="450"
+                Height="800"
                 CornerRadius="50"
                 Background="#FF51F1BC"/>
-        <Border Width="550"
-                Height="850"
+        <Border Width="450"
+                Height="800"
                 CornerRadius="50"
                 Background="#8E121212"/>
 
         <StackPanel HorizontalAlignment="Center"
                     VerticalAlignment="Center">
             <TextBlock Text="Kingsman"
-                       FontSize="64"
+                       FontSize="54"
                        FontWeight="Bold"
                        Foreground="WhiteSmoke"
                        HorizontalAlignment="Center"
@@ -35,7 +35,7 @@
                        Margin="0 0 0 20"/>
             <TextBox x:Name="tbLastName" 
                      Text="Фамилия" 
-                     FontSize="24"
+                     FontSize="22"
                      Foreground="WhiteSmoke"
                      CaretBrush="White"
                      Width="250"
@@ -46,7 +46,7 @@
                      GotFocus="tbReg_GotFocus"/>
             <TextBox x:Name="tbFirstName" 
                      Text="Имя" 
-                     FontSize="24"
+                     FontSize="22"
                      Foreground="WhiteSmoke"
                      CaretBrush="White"
                      Width="250"
@@ -57,7 +57,7 @@
                      GotFocus="tbReg_GotFocus"/>
             <TextBox x:Name="tbPatronymic" 
                      Text="Отчество"
-                     FontSize="24"
+                     FontSize="22"
                      Foreground="WhiteSmoke"
                      CaretBrush="White"
                      Width="250"
@@ -67,7 +67,7 @@
                      BorderBrush="#CCFFFFFF"
                      GotFocus="tbReg_GotFocus"/>
             <ComboBox x:Name="cbGender"
-                      FontSize="20"
+                      FontSize="18"
                       Width="250"
                       BorderThickness="0 0 0 1"
                       BorderBrush="#CCFFFFFF"
@@ -75,7 +75,7 @@
             </ComboBox>
             <TextBox x:Name="tbEmail" 
                      Text="Почта" 
-                     FontSize="24"
+                     FontSize="22"
                      Foreground="WhiteSmoke"
                      CaretBrush="White"
                      Width="250"
@@ -86,7 +86,7 @@
                      GotFocus="tbReg_GotFocus"/>
             <TextBox x:Name="tbPhone" 
                      Text="Номер телефона" 
-                     FontSize="24"
+                     FontSize="22"
                      Foreground="WhiteSmoke"
                      CaretBrush="White"
                      Width="250"
@@ -97,7 +97,7 @@
                      GotFocus="tbReg_GotFocus"/>
             <TextBox x:Name="tbLogin" 
                      Text="Логин" 
-                     FontSize="24"
+                     FontSize="22"
                      Foreground="WhiteSmoke"
                      CaretBrush="White"
                      Width="250"
@@ -108,7 +108,7 @@
                      GotFocus="tbReg_GotFocus"/>
             <TextBox x:Name="tbPassword" 
                      Text="Пароль"
-                     FontSize="24"
+                     FontSize="22"
                      Foreground="WhiteSmoke"
                      CaretBrush="White"
                      Width="250"
@@ -119,7 +119,7 @@
                      GotFocus="tbReg_GotFocus"/>
             <TextBox x:Name="tbPasswordRe" 
                      Text="Подтвердите пароль"
-                     FontSize="24"
+                     FontSize="22"
                      Foreground="WhiteSmoke"
                      CaretBrush="White"
                      Width="250"
@@ -131,7 +131,7 @@
             <Border>
                 <Button x:Name="btnRegistration"
                         Content="Зарегистрироваться"
-                        FontSize="24"
+                        FontSize="22"
                         Foreground="WhiteSmoke"
                         Margin="0 0 0 0"
                         Background="{x:Null}"
